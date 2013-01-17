@@ -74,6 +74,7 @@ Emacs load path."
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
 (add-to-list 'load-path prelude-vendor-dir)
+;; (add-to-list 'load-path "~/.emacs.d/elpa/o-blog")
 (prelude-add-subfolders-to-load-path prelude-vendor-dir)
 
 (require 'dash)
@@ -85,6 +86,12 @@ Emacs load path."
 (require 'prelude-mode)
 (require 'prelude-editor)
 (require 'prelude-global-keybindings)
+(require 'prelude-programming)
+(require 'prelude-mmm)
+(require 'prelude-smalltalk)
+(require 'prelude-mako)
+(require 'prelude-deft)
+(require 'prelude-python)
 
 ;; OSX specific settings
 (when (eq system-type 'darwin)
