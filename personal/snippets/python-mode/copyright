@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: copyright
+# key: cp
+# group: truveris
+# --
+# Copyright `(format-time-string "%Y")` Truveris Inc. All Rights Reserved.

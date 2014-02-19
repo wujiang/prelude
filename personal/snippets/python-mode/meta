@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: truveris.model.meta
+# key: meta
+# group: truveris
+# --
+from truveris.model import meta

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: truveris.model.constants
+# key: cons
+# group: truveris
+# --
+from truveris.model import constants
