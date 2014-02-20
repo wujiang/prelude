@@ -4,6 +4,7 @@
 # group: object oriented
 # --
 class ${1:ClassName}(${2:object}):
+
       """$3
       """
 
