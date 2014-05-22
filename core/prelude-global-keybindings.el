@@ -2,8 +2,8 @@
 ;;
 ;; Copyright (c) 2011 Bozhidar Batsov
 ;;
-;; Author: Bozhidar Batsov <bozhidar.batsov@gmail.com>
-;; URL: http://www.emacswiki.org/cgi-bin/wiki/Prelude
+;; Author: Bozhidar Batsov <bozhidar@batsov.com>
+;; URL: https://github.com/bbatsov/prelude
 ;; Version: 1.0.0
 ;; Keywords: convenience
 
@@ -37,8 +37,8 @@
 
 ;; key modification
 ;; replace Alt-x
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
-(global-set-key (kbd "C-c C-m") 'execute-extended-command)
+(global-set-key (kbd "C-x C-m") 'smex)
+(global-set-key (kbd "C-c C-m") 'smex)
 ;; make it as same as unix shell
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
@@ -74,7 +74,7 @@
                                 (other-window -1))) ;; back one
 
 ;; Indentation help
-(global-set-key (kbd "C-x ^") 'join-line)
+(global-set-key (kbd "C-^") 'prelude-top-join-line)
 
 ;; Start proced in a similar manner to dired
 (global-set-key (kbd "C-x p") 'proced)
@@ -93,6 +93,14 @@
 
 ;; A complementary binding to the apropos-command(C-h a)
 (global-set-key (kbd "C-h A") 'apropos)
+
+;; kill lines backward
+(global-set-key (kbd "C-<backspace>") (lambda ()
+                                        (interactive)
+                                        (kill-line 0)
+                                        (indent-according-to-mode)))
+
+(global-set-key [remap kill-whole-line] 'prelude-kill-whole-line)
 
 ;; Activate occur easily inside isearch
 (define-key isearch-mode-map (kbd "C-o")
@@ -115,6 +123,9 @@
 ;; replace buffer-menu with ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(unless (fboundp 'toggle-frame-fullscreen)
+  (global-set-key (kbd "<f11>") 'prelude-fullscreen))
+
 ;; toggle menu-bar visibility
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 
@@ -131,7 +142,18 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-c w") (make-repeatable-command 'er/expand-region))
+
+;; make C-x C-x usable with transient-mark-mode
+(define-key global-map
+  [remap exchange-point-and-mark]
+  'prelude-exchange-point-and-mark)
+
+(global-set-key (kbd "C-c j") 'ace-jump-mode)
+(global-set-key (kbd "s-.") 'ace-jump-mode)
+(global-set-key (kbd "C-c J") 'ace-jump-buffer)
+(global-set-key (kbd "s->") 'ace-jump-buffer)
+
+(global-set-key [remap other-window] 'ace-window)
 
 (provide 'prelude-global-keybindings)
 

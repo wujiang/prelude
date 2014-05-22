@@ -3,7 +3,7 @@
 ;; Copyright © 2011-2013 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: http://batsov.com/emacs-prelude
+;; URL: https://github.com/bbatsov/prelude
 ;; Version: 1.0.0
 ;; Keywords: convenience
 
@@ -35,7 +35,10 @@
 (require 'prelude-lisp)
 
 ;; the SBCL configuration file is in Common Lisp
-(add-to-list 'auto-mode-alist '("\\.sbclrc$" . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.sbclrc\\'" . lisp-mode))
+
+;; Open files with .cl extension in lisp-mode
+(add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 
 ;; Common Lisp support depends on SLIME being installed with Quicklisp
 (if (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -63,20 +66,13 @@
 (add-hook 'lisp-mode-hook (lambda () (run-hooks 'prelude-lisp-coding-hook)))
 (add-hook 'slime-repl-mode-hook (lambda () (run-hooks 'prelude-interactive-lisp-coding-hook)))
 
-;; start slime automatically when we open a lisp file
 (defun prelude-start-slime ()
+  "Start SLIME unless it's already running."
   (unless (slime-connected-p)
     (save-excursion (slime))))
 
+;; start slime automatically when we open a lisp file
 (add-hook 'slime-mode-hook 'prelude-start-slime)
-
-;; Stop SLIME's REPL from grabbing DEL,
-;; which is annoying when backspacing over a '('
-(defun prelude-override-slime-repl-bindings-with-paredit ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key) nil))
-
-(add-hook 'slime-repl-mode-hook 'prelude-override-slime-repl-bindings-with-paredit)
 
 (eval-after-load "slime"
   '(progn

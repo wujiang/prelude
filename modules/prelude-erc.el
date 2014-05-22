@@ -3,7 +3,7 @@
 ;; Copyright © 2011-2013 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: http://batsov.com/emacs-prelude
+;; URL: https://github.com/bbatsov/prelude
 ;; Version: 1.0.0
 ;; Keywords: convenience
 
@@ -156,6 +156,8 @@ that can occur between two notifications.  The default is
     (message "Server buffer: %s" (buffer-name buffer))
     (with-current-buffer buffer
       (erc-quit-server "Asta la vista"))))
+
+(setq erc-autojoin-channels-alist '(("freenode.net" "#prelude-emacs" "#projectile")))
 
 (provide 'prelude-erc)
 
