@@ -95,7 +95,9 @@
                                           "%b"))))
 
 ;; use zenburn as the default theme
-(load-theme 'zenburn t)
+;; (load-theme 'zenburn t)
+;; (load-library "zenburn-theme")
+(load-file "~/.emacs.d/themes/dream-theme.el")
 
 (provide 'prelude-ui)
 ;;; prelude-ui.el ends here

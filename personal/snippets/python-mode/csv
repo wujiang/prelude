@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: csv dictwriter
+# key: csv
+# group: tools
+# --
+import os
+from csv import DictWriter
+from tempfile import mkstemp
+
+f, fpath = mkstemp(suffix=".csv")
+os.close(f)
+
+headers = [
+]
+with open(fpath, "w") as f:
+    wr = DictWriter(f, headers)
+    for row in rows:
+        wr.writerow(row)

@@ -224,6 +224,9 @@
     (add-hook 'before-save-hook 'whitespace-cleanup nil t)
     (whitespace-mode +1)))
 
+(defun prelude-disable-whitespace ()
+  ((whitespace-mode nil)))
+
 (add-hook 'text-mode-hook 'prelude-enable-flyspell)
 (add-hook 'text-mode-hook 'prelude-enable-whitespace)
 

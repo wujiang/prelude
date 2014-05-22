@@ -67,7 +67,7 @@
 ;; C-o was for new line before.
 ;; (global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "C-o") 'next-multiframe-window)
-(global-set-key (kbd "C-O") 'previous-multiframe-window)
+(global-set-key (kbd "C-S-O") 'previous-multiframe-window)
 ;; Window switching. (C-x o goes to the next window)
 (global-set-key (kbd "C-x O") (lambda ()
                                 (interactive)
@@ -125,8 +125,8 @@
 ;; (global-unset-key [right])
 
 ;; use M-f and M-b instead
-(global-unset-key [M-left])
-(global-unset-key [M-right])
+;; (global-unset-key [M-left])
+;; (global-unset-key [M-right])
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
@@ -145,7 +145,7 @@
                   (comment-uncomment-duplicate-line t)))
 
 ;; comment-or-uncomment-region
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+(global-set-key (kbd "<f3>") 'comment-or-uncomment-region)
 ;;; prelude-global-keybindings.el ends here
 
 ;; clean buffers
@@ -156,3 +156,6 @@
                 (lambda ()
                   (interactive)
                   (insert-delimiter "=")))
+
+(global-set-key (kbd "C-x F") 'prelude-sudo-edit)
+

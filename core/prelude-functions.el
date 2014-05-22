@@ -53,4 +53,5 @@
   (shell-command-on-region b e "figlet")
   (comment-region b e))
 
+
 (provide 'prelude-functions)

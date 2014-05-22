@@ -85,8 +85,8 @@ Emacs load path."
 (require 'prelude-mode)
 (require 'prelude-editor)
 (require 'prelude-global-keybindings)
-(require 'prelude-programming)
-(require 'prelude-mmm)
+;; (require 'prelude-programming)
+;; (require 'prelude-mmm)
 (require 'prelude-smalltalk)
 (require 'prelude-mako)
 (require 'prelude-deft)
@@ -114,5 +114,59 @@ Emacs load path."
 (prelude-eval-after-init
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
+
+(defun command-line-diff (switch)
+      (let ((file1 (pop command-line-args-left))
+            (file2 (pop command-line-args-left)))
+        (ediff file1 file2)))
+
+(add-to-list 'command-switch-alist '("diff" . command-line-diff))
+
+;; org-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/org/todo")
+
+;; workflow
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "PENDING(p)" "WAITING(w)" "|" "CANCELED(c)" "DONE(d)")))
+
+(setq org-agenda-files '("~/org/todo/todo.org.gpg"))
+;; these custom agenda views will be displayed in the org-mobile app
+(setq org-agenda-custom-commands
+       '(("w" todo "TODO")
+         ("h" agenda "" ((org-agenda-show-all-dates nil)))
+         ("W" agenda "" ((org-agenda-ndays 21)
+                         (org-agenda-show-all-dates nil)))
+         ("A" agenda ""
+          ((org-agenda-ndays 1)
+           (org-agenda-overriding-header "Today")))))
+
+(defun wu-org-mode-keys ()
+  (local-set-key (kbd "<RET>") 'org-insert-todo-heading)
+  (local-set-key (kbd "M-<RET>") 'org-insert-subheading)
+  (local-set-key (kbd "C-c <RET>") 'org-insert-heading-after-current)
+)
+
+(add-hook 'org-mode-hook 'wu-org-mode-keys)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; encryption
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'epa-file)
+(epa-file-enable)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'c-mode-common-hook 'google-c-set-style)
+
+(setq wgrep-auto-save-buffer t)
+
+;; auto-rsync
+(require 'auto-rsync)
+(auto-rsync-mode t)
+
+(setq auto-rsync-dir-alist
+      '(("/home/wjiang/minus/minus_core/minus_com/" . "wudev:/mnt/minus/minus_com/")))
 
 ;;; init.el ends here
