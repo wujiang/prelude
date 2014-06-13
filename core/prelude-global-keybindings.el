@@ -32,6 +32,8 @@
 
 ;;; Code:
 
+(require 'prelude-functions)
+
 ;; use anything to select buffer
 (global-set-key (kbd "C-x b") 'helm-mini)
 
@@ -155,9 +157,6 @@
 
 (global-set-key [remap other-window] 'ace-window)
 
-(provide 'prelude-global-keybindings)
-
-(require 'prelude-functions)
 (global-set-key (kbd "C-q") 'insert-ipdb-trace)
 (global-set-key (kbd "C-c y")
                 'comment-uncomment-duplicate-line)
@@ -181,3 +180,6 @@
 
 (global-set-key (kbd "C-x F") 'prelude-sudo-edit)
 
+(global-set-key (kbd "C-c C-j") 'find-file-at-point)
+
+(provide 'prelude-global-keybindings)

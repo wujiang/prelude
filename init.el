@@ -188,7 +188,7 @@ by Prelude.")
 (auto-rsync-mode t)
 
 (setq auto-rsync-dir-alist
-      '(("/home/wjiang/minus/minus_core/minus_com/" . "wudev:/mnt/minus/minus_com/")))
+      '(("/home/wjiang/minus/minus_core/" . "wudev:/mnt/minus/")))
 
 
 ;;; init.el ends here

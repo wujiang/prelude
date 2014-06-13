@@ -18,3 +18,5 @@
   '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
 
 (global-set-key (kbd "M-.") 'helm-git-grep-at-point)
+
+(global-set-key (kbd "M-w") 'smart-copy-line)
