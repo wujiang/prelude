@@ -79,7 +79,8 @@
 (global-set-key (kbd "C-^") 'prelude-top-join-line)
 
 ;; Start proced in a similar manner to dired
-(global-set-key (kbd "C-x p") 'proced)
+(unless (eq system-type 'darwin)
+    (global-set-key (kbd "C-x p") 'proced))
 
 ;; Start eshell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'eshell)
@@ -91,6 +92,7 @@
 (global-set-key (kbd "C-x M-m") 'shell)
 
 ;; If you want to be able to M-x without meta
+
 ;; (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 ;; A complementary binding to the apropos-command(C-h a)
@@ -144,11 +146,6 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
-
-;; make C-x C-x usable with transient-mark-mode
-(define-key global-map
-  [remap exchange-point-and-mark]
-  'prelude-exchange-point-and-mark)
 
 (global-set-key (kbd "C-c j") 'ace-jump-mode)
 (global-set-key (kbd "s-.") 'ace-jump-mode)
