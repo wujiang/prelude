@@ -132,9 +132,9 @@ by Prelude.")
 
 (message "Prelude is ready to do thy bidding, Master %s!" current-user)
 
-(prelude-eval-after-init
- ;; greet the use with some useful tip
- (run-at-time 5 nil 'prelude-tip-of-the-day))
+;; (prelude-eval-after-init
+;;  ;; greet the use with some useful tip
+;;  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
 (defun command-line-diff (switch)
       (let ((file1 (pop command-line-args-left))
@@ -142,6 +142,8 @@ by Prelude.")
         (ediff file1 file2)))
 
 (add-to-list 'command-switch-alist '("diff" . command-line-diff))
+
+(add-hook 'prelude-prog-mode-hook 'disable-guru-mode t)
 
 ;; org-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -47,3 +47,6 @@
   (beginning-of-line (or (and arg (1+ arg)) 2))
   (if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
 
+
+(defun disable-guru-mode ()
+  (guru-mode -1))
