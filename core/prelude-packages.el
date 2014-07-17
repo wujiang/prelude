@@ -61,6 +61,7 @@
     gist
     gitconfig-mode
     gitignore-mode
+    god-mode
     grizzl
     guru-mode
     ov
